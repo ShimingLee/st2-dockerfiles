@@ -1,14 +1,10 @@
 ARG ST2_VERSION
-FROM stackstorm/st2:${ST2_VERSION}
-LABEL com.stackstorm.component="st2actionrunner"
+FROM stackstorm/st2actionrunner:${ST2_VERSION}
 
-# Install utils used by st2 'linux' pack, part of StackStorm core
-RUN apt-get install -y rsync \
-  inetutils-traceroute \
-  net-tools \
-  dnsutils
+COPY ./nwrfc750P_5-70002752/nwrfcsdk/ /usr/local/sap/
+RUN echo "/usr/local/sap/nwrfcsdk/lib" >>/etc/ld.so.conf.d/nwrfcsdk.conf
 
-USER root
+VOLUME ["/var/log"]
+COPY logging.actionrunner.conf /etc/st2/logging.actionrunner.conf
 
-VOLUME ["/home/stanley/.ssh", "/opt/stackstorm/packs", "/opt/stackstorm/virtualenvs"]
-CMD ["/opt/stackstorm/st2/bin/st2actionrunner", "--config-file=/etc/st2/st2.conf", "--config-file=/etc/st2/st2.docker.conf", "--config-file=/etc/st2/st2.user.conf"]
+RUN ldconfig
