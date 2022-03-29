@@ -1,7 +1,7 @@
-ARG ST2_VERSION
-FROM stackstorm/st2:${ST2_VERSION}
+FROM stackstorm/st2:3.6
 LABEL com.stackstorm.component="st2api"
 
+COPY logging.api.gunicorn.conf /etc/st2/logging.api.gunicorn.conf
 USER st2
 
 VOLUME ["/etc/st2/keys", "/opt/stackstorm/rbac"]

@@ -1,7 +1,7 @@
-ARG ST2_VERSION
-FROM stackstorm/st2:${ST2_VERSION}
+FROM stackstorm/st2:3.6
 LABEL com.stackstorm.component="st2sensorcontainer"
 
+COPY logging.sensorcontainer.conf /etc/st2/logging.sensorcontainer.conf
 USER st2
 
 VOLUME ["/opt/stackstorm/packs", "/opt/stackstorm/virtualenvs"]

@@ -1,7 +1,7 @@
-ARG ST2_VERSION
-FROM stackstorm/st2:${ST2_VERSION}
+FROM stackstorm/st2:3.6
 LABEL com.stackstorm.component="st2stream"
 
+COPY logging.stream.gunicorn.conf /etc/st2/logging.stream.gunicorn.conf
 USER st2
 
 VOLUME ["/etc/st2/keys"]
