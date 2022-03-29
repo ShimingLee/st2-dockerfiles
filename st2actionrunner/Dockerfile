@@ -1,5 +1,4 @@
-ARG ST2_VERSION
-FROM stackstorm/st2actionrunner:${ST2_VERSION}
+FROM stackstorm/st2actionrunner:3.6
 
 COPY ./nwrfc750P_5-70002752/nwrfcsdk/ /usr/local/sap/
 RUN echo "/usr/local/sap/nwrfcsdk/lib" >>/etc/ld.so.conf.d/nwrfcsdk.conf
