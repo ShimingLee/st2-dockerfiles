@@ -1,6 +1,8 @@
 FROM stackstorm/st2:3.6
 LABEL com.stackstorm.component="st2actionrunner"
 
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN  apt-get clean
 # Install utils used by st2 'linux' pack, part of StackStorm core
 RUN apt-get install -y rsync \
   inetutils-traceroute \
